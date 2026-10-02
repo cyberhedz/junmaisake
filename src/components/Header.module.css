@@ -1,0 +1,114 @@
+.header {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-line);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  height: 64px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+.logoMark {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  object-fit: contain;
+}
+
+.logoText {
+  font-family: var(--font-title);
+  font-size: 19px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.searchForm {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+}
+
+.searchInput {
+  width: 100%;
+  height: 38px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  font-size: 14px;
+}
+
+.searchInput:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}
+
+.nav {
+  display: none;
+  align-items: center;
+  gap: var(--space-5);
+  font-size: 13px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.navLink {
+  color: var(--color-text);
+}
+
+.navLink:hover {
+  color: var(--color-accent);
+}
+
+.cartLink {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cartCount {
+  background: var(--color-accent);
+  color: var(--color-white);
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 999px;
+  min-width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+
+@media (min-width: 760px) {
+  .nav {
+    display: flex;
+  }
+}
+
+.subnav {
+  display: flex;
+  gap: var(--space-5);
+  overflow-x: auto;
+  padding: var(--space-2) 0;
+  font-size: 13px;
+  color: var(--color-muted);
+  border-top: 1px solid var(--color-line);
+}
+
+.subnavLink.active {
+  color: var(--color-accent);
+  font-weight: 600;
+}

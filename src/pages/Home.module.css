@@ -1,0 +1,53 @@
+.hero {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.heroInner {
+  padding-top: var(--space-7);
+  padding-bottom: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 640px;
+}
+
+.heroTitle {
+  font-size: 32px;
+  line-height: 1.15;
+}
+
+.heroSub {
+  color: var(--color-muted);
+  font-size: 15px;
+}
+
+.heroSearch {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.heroSearch input {
+  flex: 1;
+  height: 44px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  font-size: 15px;
+}
+
+.heroSearch input:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}
+
+.heroFilters {
+  margin-top: var(--space-1);
+}
+
+@media (min-width: 760px) {
+  .heroTitle {
+    font-size: 42px;
+  }
+}

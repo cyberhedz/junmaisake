@@ -1,0 +1,16 @@
+.wrap {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottle {
+  width: 32%;
+  height: 62%;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.35);
+}
