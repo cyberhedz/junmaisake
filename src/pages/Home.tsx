@@ -1,25 +1,16 @@
-import { useState, type FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useProducts } from '../context/ProductsContext';
 import { breweries } from '../data/breweries';
 import { ProductCard } from '../components/ProductCard';
 import { BreweryCard } from '../components/BreweryCard';
 import { StyleFilterChips } from '../components/StyleFilterChips';
+import { GenAiChatBox } from '../components/GenAiChatBox';
 import styles from './Home.module.css';
 
 export function Home() {
   const { products } = useProducts();
-  const [query, setQuery] = useState('');
-  const navigate = useNavigate();
 
   const featured = products.filter((p) => p.featured);
   const latest = [...products].slice(-8).reverse();
-
-  function handleSearch(e: FormEvent) {
-    e.preventDefault();
-    const trimmed = query.trim();
-    navigate(trimmed ? `/search?q=${encodeURIComponent(trimmed)}` : '/search');
-  }
 
   return (
     <div>
@@ -32,18 +23,7 @@ export function Home() {
             A marketplace for independent Japanese breweries — one cart, one checkout, many
             kura.
           </p>
-          <form className={styles.heroSearch} role="search" onSubmit={handleSearch}>
-            <input
-              type="search"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search sake, brewery, or region…"
-              aria-label="Search"
-            />
-            <button type="submit" className="btn btn-primary">
-              Search
-            </button>
-          </form>
+          <GenAiChatBox />
           <div className={styles.heroFilters}>
             <StyleFilterChips />
           </div>

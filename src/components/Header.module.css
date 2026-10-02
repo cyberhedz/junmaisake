@@ -67,11 +67,13 @@
   justify-content: center;
   background: none;
   border: none;
-  color: var(--color-muted);
+  border-radius: var(--radius-sm);
 }
 
+/* The search icon is a static Figma asset (fixed stroke color), so hover
+   affordance comes from a background tint rather than a color change. */
 .searchSubmit:hover {
-  color: var(--color-accent);
+  background: var(--color-line);
 }
 
 .nav {
@@ -119,11 +121,12 @@
   width: 32px;
   height: 32px;
   border-radius: var(--radius-sm);
-  color: var(--color-muted);
 }
 
+/* The bell icon is a static Figma asset (fixed stroke color), so hover
+   affordance comes from a background tint rather than a color change. */
 .iconButton:hover {
-  color: var(--color-accent);
+  background: var(--color-line);
 }
 
 .cartCount {

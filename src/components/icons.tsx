@@ -1,15 +1,17 @@
-// Small line icons, hand-drawn to match the editorial aesthetic — no icon
-// library. Each takes the current text color via `stroke="currentColor"`.
+// Search, cart, and bell icons are static assets pulled directly from the
+// Sake Marketplace Figma design system (Nav component, node 8:15) — used
+// as-is, not redrawn, so they keep their original fixed colors and can't
+// recolor on hover like a stroke="currentColor" icon would.
+// Person has no Figma equivalent here (that slot is a profile photo, which
+// this project avoids per "no stock photos of people") — kept hand-drawn.
+import searchIconSrc from '../assets/icons/search.svg';
+import bellIconSrc from '../assets/icons/bell.svg';
+import cartIconSrc from '../assets/icons/cart.svg';
 
 type IconProps = { size?: number };
 
-export function SearchIcon({ size = 18 }: IconProps) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <circle cx="8.5" cy="8.5" r="6" stroke="currentColor" strokeWidth="1.6" />
-      <line x1="13" y1="13" x2="17.5" y2="17.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-    </svg>
-  );
+export function SearchIcon({ size = 16 }: IconProps) {
+  return <img src={searchIconSrc} width={size} height={size} alt="" aria-hidden="true" />;
 }
 
 export function PersonIcon({ size = 18 }: IconProps) {
@@ -26,30 +28,26 @@ export function PersonIcon({ size = 18 }: IconProps) {
   );
 }
 
-export function CartIcon({ size = 18 }: IconProps) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <path
-        d="M5 7h10l-.8 9.1a1.5 1.5 0 0 1-1.5 1.4H7.3a1.5 1.5 0 0 1-1.5-1.4L5 7Z"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinejoin="round"
-      />
-      <path d="M7.3 7V5.3a2.7 2.7 0 1 1 5.4 0V7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-    </svg>
-  );
+export function CartIcon({ size = 19 }: IconProps) {
+  const height = Math.round((size / 27.5525) * 23.5296);
+  return <img src={cartIconSrc} width={size} height={height} alt="" aria-hidden="true" />;
 }
 
-export function BellIcon({ size = 18 }: IconProps) {
+export function BellIcon({ size = 17 }: IconProps) {
+  const height = Math.round((size / 21.9491) * 23.3694);
+  return <img src={bellIconSrc} width={size} height={height} alt="" aria-hidden="true" />;
+}
+
+export function SendIcon({ size = 16 }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 20 20" fill="none" aria-hidden="true">
       <path
-        d="M5 14.3V9a5 5 0 0 1 10 0v5.3l1.2 1.7H3.8L5 14.3Z"
+        d="M3 10h13.5M11 4.5 16.5 10 11 15.5"
         stroke="currentColor"
         strokeWidth="1.6"
+        strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <path d="M8.3 17a1.8 1.8 0 0 0 3.4 0" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
     </svg>
   );
 }
