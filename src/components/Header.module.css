@@ -35,6 +35,7 @@
 }
 
 .searchForm {
+  position: relative;
   flex: 1;
   min-width: 0;
   display: flex;
@@ -43,7 +44,7 @@
 .searchInput {
   width: 100%;
   height: 38px;
-  padding: 0 var(--space-3);
+  padding: 0 38px 0 var(--space-3);
   border: 1px solid var(--color-line);
   border-radius: var(--radius-sm);
   background: var(--color-bg);
@@ -55,6 +56,24 @@
   outline-offset: 1px;
 }
 
+.searchSubmit {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--color-muted);
+}
+
+.searchSubmit:hover {
+  color: var(--color-accent);
+}
+
 .nav {
   display: none;
   align-items: center;
@@ -64,7 +83,24 @@
   flex-shrink: 0;
 }
 
+.sellButton {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-sm);
+  background: var(--color-accent);
+  color: var(--color-white);
+}
+
+.sellButton:hover {
+  background: var(--color-accent-strong);
+}
+
 .navLink {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   color: var(--color-text);
 }
 
@@ -73,9 +109,21 @@
 }
 
 .cartLink {
+  position: relative;
+}
+
+.iconButton {
   display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  color: var(--color-muted);
+}
+
+.iconButton:hover {
+  color: var(--color-accent);
 }
 
 .cartCount {

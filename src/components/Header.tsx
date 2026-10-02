@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { BellIcon, CartIcon, PersonIcon, SearchIcon } from './icons';
 import logo from '../assets/logo.png';
 import styles from './Header.module.css';
 
@@ -36,19 +37,27 @@ export function Header() {
             onChange={(e) => setQuery(e.target.value)}
             aria-label="Search"
           />
+          <button type="submit" className={styles.searchSubmit} aria-label="Search">
+            <SearchIcon />
+          </button>
         </form>
 
         <nav className={styles.nav} aria-label="Primary">
-          <Link to="/sell" className={styles.navLink}>
+          <Link to="/sell" className={styles.sellButton}>
             Sell
           </Link>
           <Link to="/account" className={styles.navLink}>
+            <PersonIcon />
             Account
           </Link>
           <Link to="/cart" className={`${styles.navLink} ${styles.cartLink}`}>
+            <CartIcon />
             Cart
             {itemCount > 0 && <span className={styles.cartCount}>{itemCount}</span>}
           </Link>
+          <span className={styles.iconButton} aria-hidden="true" title="Notifications">
+            <BellIcon />
+          </span>
         </nav>
       </div>
 
