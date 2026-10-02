@@ -96,36 +96,85 @@
   color: var(--color-muted);
 }
 
-.form {
+/* "Ask anything" composer — a rounded card with the text field on top and
+   an icon toolbar below it, rather than a plain input + button row. */
+.composer {
+  margin: var(--space-1) var(--space-3) var(--space-3);
   display: flex;
-  gap: var(--space-2);
-  padding: var(--space-3);
-}
-
-.form input {
-  flex: 1;
-  height: 44px;
-  padding: 0 var(--space-3);
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-sm);
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-4) var(--space-3);
   background: var(--color-surface);
-  font-size: 15px;
+  border: 1px solid var(--color-line);
+  border-radius: 20px;
+  box-shadow:
+    0 1px 2px rgba(28, 26, 23, 0.04),
+    0 10px 24px rgba(28, 26, 23, 0.05);
 }
 
-.form input:focus {
+.composerInput {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+  color: var(--color-text);
+  padding: 0;
+}
+
+.composerInput::placeholder {
+  color: var(--color-muted);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toolbarRight {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* Attach / mic are decorative only — this MVP has no file upload or voice
+   input, so neither is a real button, just a labeled affordance (hover
+   tooltip) for what's coming, same honesty as the "coming soon" payment
+   step in checkout. */
+.ghostIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  color: var(--color-muted);
+}
+
+.scopeSelect {
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-muted);
+  padding: 4px 2px;
+}
+
+.scopeSelect:focus {
   outline: 2px solid var(--color-accent);
   outline-offset: 1px;
+  border-radius: var(--radius-sm);
 }
 
 .send {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 34px;
+  height: 34px;
   flex-shrink: 0;
   border: none;
-  border-radius: var(--radius-sm);
+  border-radius: 999px;
   background: var(--color-accent);
   color: var(--color-white);
 }

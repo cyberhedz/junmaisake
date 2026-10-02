@@ -15,6 +15,9 @@ export function answerQuery(
   rawQuery: string,
   products: Product[],
   breweries: Brewery[],
+  /** Style picked from the composer's scope dropdown — used when the
+   * question itself doesn't name a style. */
+  scopeStyle?: SakeStyle,
 ): AssistantAnswer {
   const q = rawQuery.trim().toLowerCase();
   if (!q) {
@@ -28,6 +31,7 @@ export function answerQuery(
   if (q.includes('daiginjo')) style = 'Junmai Daiginjo';
   else if (q.includes('ginjo')) style = 'Junmai Ginjo';
   else if (q.includes('junmai')) style = 'Junmai';
+  else if (scopeStyle) style = scopeStyle;
 
   const region = REGIONS.find((r) => q.includes(r.toLowerCase()));
 

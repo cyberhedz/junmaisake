@@ -4,13 +4,20 @@ import { useProducts } from '../context/ProductsContext';
 import { breweries } from '../data/breweries';
 import { answerQuery } from '../lib/sakeAssistant';
 import { BottlePlaceholder } from './BottlePlaceholder';
-import { SendIcon } from './icons';
+import { MicIcon, PlusIcon, SendIcon } from './icons';
 import styles from './GenAiChatBox.module.css';
-import type { Product } from '../types';
+import type { Product, SakeStyle } from '../types';
 
 type Message =
   | { role: 'user'; text: string }
   | { role: 'assistant'; text: string; matches: Product[] };
+
+const SCOPES: Array<{ label: string; style?: SakeStyle }> = [
+  { label: 'All styles' },
+  { label: 'Junmai', style: 'Junmai' },
+  { label: 'Junmai Ginjo', style: 'Junmai Ginjo' },
+  { label: 'Junmai Daiginjo', style: 'Junmai Daiginjo' },
+];
 
 /** Hero chat box — answers come from matching the question against our own
  * catalog, not a live language model. Same "clearly mocked" spirit as the
@@ -18,13 +25,16 @@ type Message =
 export function GenAiChatBox() {
   const { products } = useProducts();
   const [input, setInput] = useState('');
+  const [scopeLabel, setScopeLabel] = useState(SCOPES[0].label);
   const [messages, setMessages] = useState<Message[]>([]);
+
+  const scopeStyle = SCOPES.find((s) => s.label === scopeLabel)?.style;
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     const trimmed = input.trim();
     if (!trimmed) return;
-    const { reply, matches } = answerQuery(trimmed, products, breweries);
+    const { reply, matches } = answerQuery(trimmed, products, breweries, scopeStyle);
     setMessages((prev) => [
       ...prev,
       { role: 'user', text: trimmed },
@@ -69,17 +79,53 @@ export function GenAiChatBox() {
         </div>
       )}
 
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <form className={styles.composer} onSubmit={handleSubmit}>
         <input
+          className={styles.composerInput}
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Ask about a style, region, or price…"
+          placeholder="Ask anything"
           aria-label="Ask the sake assistant"
         />
-        <button type="submit" className={styles.send} aria-label="Send">
-          <SendIcon />
-        </button>
+
+        <div className={styles.toolbar}>
+          <span
+            className={styles.ghostIcon}
+            title="Attachments coming soon"
+            aria-hidden="true"
+          >
+            <PlusIcon />
+          </span>
+
+          <div className={styles.toolbarRight}>
+            <label className="visually-hidden" htmlFor="chat-scope">
+              Scope
+            </label>
+            <select
+              id="chat-scope"
+              className={styles.scopeSelect}
+              value={scopeLabel}
+              onChange={(e) => setScopeLabel(e.target.value)}
+            >
+              {SCOPES.map((s) => (
+                <option key={s.label} value={s.label}>
+                  {s.label}
+                </option>
+              ))}
+            </select>
+            <span
+              className={styles.ghostIcon}
+              title="Voice input coming soon"
+              aria-hidden="true"
+            >
+              <MicIcon />
+            </span>
+            <button type="submit" className={styles.send} aria-label="Send">
+              <SendIcon />
+            </button>
+          </div>
+        </div>
       </form>
     </div>
   );
