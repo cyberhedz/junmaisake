@@ -2,7 +2,6 @@ import { useProducts } from '../context/ProductsContext';
 import { breweries } from '../data/breweries';
 import { ProductCard } from '../components/ProductCard';
 import { BreweryCard } from '../components/BreweryCard';
-import { StyleFilterChips } from '../components/StyleFilterChips';
 import { GenAiChatBox } from '../components/GenAiChatBox';
 import styles from './Home.module.css';
 
@@ -24,9 +23,6 @@ export function Home() {
             kura.
           </p>
           <GenAiChatBox />
-          <div className={styles.heroFilters}>
-            <StyleFilterChips />
-          </div>
         </div>
       </section>
 
